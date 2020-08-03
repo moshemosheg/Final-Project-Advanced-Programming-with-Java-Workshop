@@ -39,7 +39,7 @@ public class Email {
         //TLC port
         String port = "587";
         String userName = "ymishkanAsher@gmail.com";
-        String password = "ymaymayma3";
+        String password = "";
 
         // outgoing message information
         String subject = "Document from Institut X";
