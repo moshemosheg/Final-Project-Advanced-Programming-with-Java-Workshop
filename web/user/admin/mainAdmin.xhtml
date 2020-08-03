@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Administrator</title>
+        <h:outputStylesheet library="css" name="main.css"  />
+    </h:head>
+    <h:body>
+        <ui:include src="/user/navigationBar.xhtml"/>
+        <h:panelGroup layout="block" class="outer">
+            <h:panelGroup layout="block" class="middle">
+                <h:panelGroup layout="block"  >
+                    <h:form id="of">
+                        <h:panelGrid styleClass="middleOfScreen" columns="2">
+                            <h:commandButton styleClass="buttonBig" value="Show Registered Users" 
+                                             action="/user/admin/showRegistered?faces-redirect=true"/>
+                            <h:commandButton styleClass="buttonBig" value="Show Administrators" 
+                                             action="/user/admin/showAdministratorPrivileges?faces-redirect=true"/>
+                        </h:panelGrid>
+                        <h:panelGrid styleClass="middleOfScreen" columns="3">
+                            <h:commandButton styleClass="buttonBig" value="Add User" 
+                                             action="/user/admin/addUser?faces-redirect=true"/>
+                            <h:commandButton styleClass="buttonBig" value="Delete User" 
+                                             action="/user/admin/deleteUser?faces-redirect=true"/>
+                            <h:commandButton styleClass="buttonBig" value="Change Privileges" 
+                                             action="/user/admin/chamgePrivileges?faces-redirect=true"/>
+                        </h:panelGrid>
+                    </h:form>
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:body>
+</html>

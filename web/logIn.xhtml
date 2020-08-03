@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Log In</title>
+        <h:outputStylesheet library="css" name="main.css"  />
+        <meta name="google-signin-client_id" 
+              content="845616635154-9gb74oiqnsptrfai1amdadhdj281aft7.apps.googleusercontent.com" />
+        <script src="https://apis.google.com/js/platform.js" async="async" defer = "defer"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    </h:head>
+    <h:body>
+        <h:outputText value="&lt;br/&gt;" escape="false" />
+        <h:outputText value="&lt;br/&gt;" escape="false" />
+        <h:outputText value="Log In to Website" id="header"/>
+        <h:panelGroup layout="block" class="outer">
+            <h:panelGroup layout="block" class="middle">
+                <h:panelGroup layout="block" id="smallBox" class="inner ">
+                    <h:panelGrid styleClass="middleOfScreen" columns="1">
+                        <h:outputText value="&lt;br/&gt;" escape="false" />
+                        <h:outputText value="Press 'Sign In' button"/>
+                        <h:outputText value="&lt;br/&gt;" escape="false" />
+                        <!-- google signin api-->
+                        <h:panelGrid styleClass="middleOfScreen" columns="1">
+                            <div  class="g-signin2" data-onsuccess="onSignIn"></div>
+                        </h:panelGrid>
+                        <h:form id="of">
+                            <h:inputHidden id="userEmail" value="#{userBean.email}"
+                                           validator="#{myValidator.validateRegisteredEmail}"/>
+                            <h:inputHidden id="id-token" value="#{userBean.idToken}"
+                                           validator="#{myValidator.validateGoogleSignInToken}"/>
+                            <h:outputText value="if  'Sigend In' then press 'log in'"/>
+                            <h:outputText value="&lt;br/&gt;" escape="false" />
+                            <h:commandButton id="logInInput" value="log in" action="#{userBean.logIn}"/>
+                            <h:panelGrid styleClass="middleOfScreen" columns="1">
+                                <h:message for="userEmail" styleClass="error"/>
+                                <h:message for="id-token" styleClass="error"/>
+                            </h:panelGrid>
+                        </h:form>
+                        <script>
+                            //google callback. sends users email and token to bean from javascript
+                            function onSignIn(googleUser) {
+                                var profile = googleUser.getBasicProfile();
+                                document.getElementById('of:userEmail').value = profile.getEmail();
+                                document.getElementById('of:id-token').value = googleUser.getAuthResponse().id_token;
+                            }
+                        </script>
+                        <h:outputText value="&lt;br/&gt;" escape="false" />
+                    </h:panelGrid>
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:body>
+</html>
+

@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Add Student</title>
+        <h:outputStylesheet library="css" name="main.css"  />
+    </h:head>
+    <h:body>
+        <ui:include src="navigationBar.xhtml"/>
+        <h:outputText value="&lt;br/&gt;" escape="false" />
+        <h:outputText value="Add Student to database" id ="header"/>
+        <h:panelGroup layout="block" class="outer">
+            <h:panelGroup layout="block" class="middle ">
+                <h:panelGroup layout="block" class="inner" id="largeBox">
+                    <h:form>
+                        <h:panelGrid columns="3">
+                            <h:panelGrid  columns="3">
+                                <h:outputText value="Students Id:"/>
+                                <h:inputText id="idInput" label="Students Id" required="true"
+                                             requiredMessage="Enter Students Id number" 
+                                             validator="#{myValidator.validateIdIsNotInDatabase}"
+                                             value="#{studentBean.student.id}" maxlength="9"/>
+                                <h:message for="idInput" styleClass="error" />
+                            </h:panelGrid>
+                            <h:panelGrid columns="3">
+                                <h:outputText value="First Name:"/>
+                                <h:inputText id="FirstNameInput" label="First Name" required="true" 
+                                             requiredMessage="Enter Students First Name"
+                                             value="#{studentBean.student.firstName}"  maxlength="30"/>
+                                <h:message for="FirstNameInput" styleClass="error" />
+                            </h:panelGrid>
+                            <h:panelGrid columns="3">
+                                <h:outputText value="Last Name:"/>
+                                <h:inputText id="lastNameInput" label="Last Name" required="true"
+                                             requiredMessage="Enter Students Last Name" 
+                                             value="#{studentBean.student.lastName}" maxlength="30"/> 
+                                <h:message for="lastNameInput" styleClass="error" />
+                            </h:panelGrid>
+                            <h:panelGrid columns="3">
+                                <h:outputText value="year of school:"/>
+                                <h:inputText id="yearOfSchoolInput" label="year of school" required="true"
+                                             requiredMessage="Enter Year Of School" 
+                                             value="#{studentBean.student.yearOfSchool}" maxlength="3">
+                                    <f:validateLongRange minimum = "1" maximum = "100" />
+                                </h:inputText>
+                                <h:message for="yearOfSchoolInput" styleClass="error" />
+                            </h:panelGrid>
+                            <h:panelGrid columns="3">
+                                <h:outputText value="Date starting:"/>
+                                <h:inputText id="DateOfStartInput"  converter="localDateConverter" 
+                                             label="Date starting" required="true"
+                                             requiredMessage="Enter Students Date Of Start" 
+                                             value="#{studentBean.student.dateOfStart}" maxlength="10">
+                                </h:inputText>
+                                <h:message for="DateOfStartInput" styleClass="error" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid columns="3">
+                            <h:panelGrid columns="3">
+                                <h:outputText value="Street:"/>
+                                <h:inputText id="streetInput" label="Street" required="true" 
+                                             requiredMessage="Enter Street"
+                                             value="#{studentBean.student.address.street}" 
+                                             maxlength="30"/>
+                                <h:message for="streetInput" styleClass="error" />  
+                            </h:panelGrid>
+                            <h:panelGrid columns="3">
+                                <h:outputText value="House number:"/>
+                                <h:inputText id="HouseNumberInput" label="House number" required="true"
+                                             requiredMessage="Enter House number" 
+                                             value="#{studentBean.student.address.houseNumber}"
+                                             maxlength="10"/>
+                                <h:message for="HouseNumberInput" styleClass="error" />
+                            </h:panelGrid>
+                            <h:panelGrid columns="3">
+                                <h:outputText value="City:"/>
+                                <h:inputText id="cityInput" label="City" required="true" 
+                                             requiredMessage="Enter city"
+                                             value="#{studentBean.student.address.city}" maxlength="20"/>
+                                <h:message for="cityInput" styleClass="error" />
+                            </h:panelGrid>
+                            <h:panelGrid columns="3">
+                                <h:outputText value="Country:"/>
+                                <h:inputText id="countryInput" label="Country" required="true"
+                                             requiredMessage="Enter Country" 
+                                             value="#{studentBean.student.address.country}" maxlength="20"/>
+                                <h:message for="countryInput" styleClass="error" />
+                            </h:panelGrid>
+                            <h:panelGrid columns="3">
+                                <h:outputText value="Zip number:"/>
+                                <h:inputText id="zipNumber" label="Zip number" 
+                                             value="#{studentBean.student.address.zipNumber}"
+                                             maxlength="10"/>
+                                <h:message for="zipNumber" styleClass="error" />
+                            </h:panelGrid>  
+                            <h:panelGrid  columns = "2" >
+                                <h:outputText value="Parents have same address as student?"/>
+                                <h:selectOneRadio label="same address" 
+                                                  value="#{studentBean.student.sameAddress}">
+                                    <f:selectItem itemValue ="true" itemLabel="yes"/>
+                                    <f:selectItem itemValue="false" itemLabel="no"/>
+                                </h:selectOneRadio>
+                            </h:panelGrid>       
+                        </h:panelGrid>
+                        <h:panelGrid columns="7">
+                            <h:panelGrid columns="3">
+                                <h:outputText value="Students cellphone number:"/>
+                                <h:inputText id="studentsCellphone" label="cellphone number" 
+                                             validator="#{myValidator.validateisEmptyOrNumber}"
+                                             value="#{studentBean.student.studentPhone}" maxlength="18">
+                                </h:inputText>
+                                <h:message for="studentsCellphone" styleClass="error"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="3">
+                                <h:outputText value="Enter students date of birth:"/>
+                                <h:inputText id="dateOfBirthInput" label="date of birth" required="true"
+                                             requiredMessage="Enter date of birth" 
+                                             converter="localDateConverter" 
+                                             value="#{studentBean.student.birthday}" maxlength="10" >
+                                </h:inputText>
+                                <h:message for="dateOfBirthInput" styleClass="error" />
+                            </h:panelGrid>
+                            <h:panelGrid columns="3">
+                                <h:outputText value="Enter students email:"/>
+                                <h:inputText id="studentsEmail" label="students email" 
+                                             value="#{studentBean.student.studentsEmail}"
+                                             validator="#{myValidator.validateEmailInput}" maxlength="30"/>
+                                <h:message for="studentsEmail" styleClass="error" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid  columns = "2">
+                            <h:panelGrid  columns = "2">
+                                <h:outputText value="marriage status:"/>
+                                <h:selectOneMenu  label="marriage status"
+                                                  value="#{studentBean.student.marriageStatus}">
+                                    <f:selectItem itemValue="single" itemLabel="single"/>
+                                    <f:selectItem itemValue ="married " itemLabel="married"/>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <h:panelGrid  columns = "2" >
+                                <h:outputText value="needs postponement from army?"/>
+                                <h:selectOneRadio label="postponement from army" 
+                                                  value="#{studentBean.student.postponementArmy}">
+                                    <f:selectItem itemValue ="true" itemLabel="yes"/>
+                                    <f:selectItem itemValue="false" itemLabel="no"/>
+                                </h:selectOneRadio>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid columns="3">
+                            <h:panelGrid  columns = "3" >
+                                <h:outputText value="Fathers first name:"/>
+                                <h:inputText id ="fatherFirstNameInput" label="Fathers first name" 
+                                             value="#{studentBean.student.fatherFirstName}"
+                                             required="true" requiredMessage="Enter Fathers first name" 
+                                             maxlength="20"/>
+                                <h:message for="fatherFirstNameInput" styleClass="error" />
+                            </h:panelGrid>
+                            <h:panelGrid  columns = "3" >
+                                <h:outputText value="Fathers Id Number:"/>
+                                <h:inputText id ="fatherIdInput" label="Fathers Id Number" 
+                                             value="#{studentBean.student.fatherId}" required="true" 
+                                             requiredMessage="Enter Fathers Id number"
+                                             validator="#{myValidator.validateLegalId}" maxlength="9">
+                                </h:inputText>
+                                <h:message for="fatherIdInput" styleClass="error"/>
+                            </h:panelGrid>
+                            <h:panelGrid  columns = "3" >
+                                <h:outputText value="Mothers first name:"/>
+                                <h:inputText id="motherFirstNameInput" label="Mothers first name" 
+                                             value="#{studentBean.student.motherFirstName}" required="true" 
+                                             requiredMessage="Enter mothers first name" maxlength="20"/>
+                                <h:message for="motherFirstNameInput" styleClass="error" />
+                            </h:panelGrid>
+                            <h:panelGrid  columns = "3" >
+                                <h:outputText value="Mothers Id Number:"/>
+                                <h:inputText id="motherIdInput" label="Mothers Id Number" 
+                                             value="#{studentBean.student.motherId}" required="true" 
+                                             requiredMessage="Enter mothers Id number" 
+                                             validator="#{myValidator.validateLegalId}" maxlength="9">
+                                </h:inputText>
+                                <h:message for="motherIdInput" styleClass="error"/>
+                            </h:panelGrid>
+                            <h:panelGrid  columns = "3" >
+                                <h:outputText value="Parents Email:"/>
+                                <h:inputText id="parentsEmail" label="Parents Email" 
+                                             value="#{studentBean.student.parentEmail}" 
+                                             validator="#{myValidator.validateEmailInput}" maxlength="30"/>
+                                <h:message for="parentsEmail" styleClass="error"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:panelGrid columns="3">
+                            <h:panelGrid  columns = "3" >
+                                <h:outputText value="House phonenumber:"/>
+                                <h:inputText id="housePhonenumberInput" label="House phonenumber" 
+                                             value="#{studentBean.student.housePhone}" 
+                                             validator="#{myValidator.validateisEmptyOrNumber}"
+                                             maxlength="18"/>
+                                <h:message for="housePhonenumberInput" styleClass="error" />
+                            </h:panelGrid>
+                            <h:panelGrid  columns = "3" >
+                                <h:outputText value="Fathers cellphone:"/>
+                                <h:inputText id="fathersCellphoneInput" label="Fathers cellphone" 
+                                             value="#{studentBean.student.fatherCellphone}" 
+                                             validator="#{myValidator.validateisEmptyOrNumber}"
+                                             maxlength="18">
+                                </h:inputText>
+                                <h:message for="fathersCellphoneInput" styleClass="error" />
+                            </h:panelGrid>
+                            <h:panelGrid  columns = "3" >
+                                <h:outputText value="Mothers cellphone:"/>
+                                <h:inputText id="mothersCellphoneInput" label="Mothers cellphone" 
+                                             value="#{studentBean.student.motherCellphone}" 
+                                             validator="#{myValidator.validateisEmptyOrNumber}"
+                                             maxlength="18">
+                                </h:inputText>
+                                <h:message for="mothersCellphoneInput" styleClass="error" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                        <h:commandButton value="Save To Database" action="#{studentBean.addStudent}"/>
+                        <h:messages globalOnly="true" style="color: red" />
+                    </h:form>
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:body>
+</html>

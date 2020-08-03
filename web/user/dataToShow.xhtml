@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Show Data</title>
+        <h:outputStylesheet library="css" name="main.css"  />
+    </h:head>
+    <h:body>
+        <ui:include src="navigationBar.xhtml"/>
+        <h:panelGroup layout="block" class="outer">
+            <h:panelGroup layout="block" class="middle ">
+                <h:panelGroup layout="block" id="mediumBox" class="inner ">
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+                    <h:outputText value="Pick which information to show:" 
+                                  style="font-weight: bold;"/>
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+                    <h:outputText value="&lt;br/&gt;" escape="false" />
+                    <h:form>   
+                        <h:panelGrid styleClass="middleOfScreen" columns="12">
+                            <h:outputText value="Id:"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.id}"/>
+                            <h:outputText value="First Name:"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.firstName}"/>
+                            <h:outputText value="Last Name"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.lastName}"/>
+                            <h:outputText value="Year Of School"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.yearOfSchool}"/>
+                            <h:outputText value="Date Of Start"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.dateOfStart}"/>  
+                            <h:outputText value="Date Of End"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.dateOfEnd}"/>  
+                        </h:panelGrid>
+                        <h:panelGrid styleClass="middleOfScreen" columns="10">
+                            <h:outputText value="Street"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.street}"/>
+                            <h:outputText value="City"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.city}"/>
+                            <h:outputText value="Country"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.country}"/>
+                            <h:outputText value="Zip Number"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.zipNumber}"/>
+                            <h:outputText value="House Number"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.houseNumber}"/>
+                        </h:panelGrid>
+                        <h:panelGrid styleClass="middleOfScreen" columns="10">
+                            <h:outputText value="Student Phone"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.studentPhone}"/>
+                            <h:outputText value="Date Of Birth"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.dateOfBirth}"/>
+                            <h:outputText value="Students Email"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.studentsEmail}"/>
+                            <h:outputText value="Marriage Status"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.marriageStatus}"/>
+                            <h:outputText value="Postponement Army"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.postponementArmy}"/>  
+                        </h:panelGrid>
+                        <h:panelGrid styleClass="middleOfScreen" columns="10">
+                            <h:outputText value="Father First Name"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.fatherFirstName}"/>
+                            <h:outputText value="Father Id"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.fatherId}"/>
+                            <h:outputText value="Mother First Name"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.motherFirstName}"/>
+                            <h:outputText value="Mother Id"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.motherId}"/>
+                            <h:outputText value="House Phone"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.housePhone}"/>
+                        </h:panelGrid>
+                        <h:panelGrid styleClass="middleOfScreen" columns="8">
+                            <h:outputText value="Father Cellphone"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.fatherCellphone}"/>
+                            <h:outputText value="Mother Cellphone"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.motherCellphone}"/>
+                            <h:outputText value="Parent Email"/>
+                            <h:selectBooleanCheckbox 
+                                value = "#{dynamicDatatableBean.dataToShow.parentEmail}"/>
+                        </h:panelGrid>
+                        <h:outputText value="&lt;br/&gt;" escape="false" />
+                        <h:outputText value="Pick which Students to show:" 
+                                      style="  font-weight: bold;"/>
+                        <h:outputText value="&lt;br/&gt;" escape="false" />
+                        <h:outputText value="&lt;br/&gt;" escape="false" />
+                        <h:panelGrid styleClass="middleOfScreen" columns="2">
+                            <h:outputText value="Alumni/Current students:"/>
+                            <h:selectOneMenu  label="Alumni/Current students" 
+                                              value="#{dynamicDatatableBean.dataToShow.alumniOrCurrent}">
+                                <f:selectItem itemValue="all" itemLabel="All"/>
+                                <f:selectItem itemValue ="alumni" itemLabel="Alumni"/>
+                                <f:selectItem itemValue="current students" itemLabel="Current Students"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <h:panelGrid styleClass="middleOfScreen" columns="2">
+                            <h:outputText value="Married/Single:"/>
+                            <h:selectOneMenu  label="Married/Single" 
+                                              value="#{dynamicDatatableBean.dataToShow.marriedOrSingle}">
+                                <f:selectItem itemValue="all" itemLabel="All"/>
+                                <f:selectItem itemValue ="single" itemLabel="Single"/>
+                                <f:selectItem itemValue="married" itemLabel="Married"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <h:panelGrid styleClass="middleOfScreen" columns="2">
+                            <h:outputText value="Postponement From Army:"/>
+                            <h:selectOneMenu  label="Postponement From Army" 
+                                              value="#{dynamicDatatableBean.dataToShow.postponementOrNot}">
+                                <f:selectItem itemValue="all" itemLabel="All"/>
+                                <f:selectItem itemValue ="0" itemLabel="Need Postponement"/>
+                                <f:selectItem itemValue="1" itemLabel="Don't need Postponement"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <h:commandButton value = "Show Data" action = "showStudents" />
+                    </h:form> 	
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:body>
+</html>
+

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml" 
+      xmlns:f = "http://java.sun.com/jsf/core"     
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Replace text in template</title> 
+        <h:outputStylesheet library="css" name="main.css"  />
+    </h:head>
+    <h:body>
+        <ui:include src="navigationBar.xhtml" class="navBar" />
+        <h:outputText value="&lt;br/&gt;" escape="false" />
+        <h:outputText value="&lt;br/&gt;" escape="false" />
+        <h:outputText value="Insert Students Info into Template by entring Students Id" id="header" />
+        <h:panelGroup layout="block" class="outer">
+            <h:panelGroup layout="block" class="middle ">
+                <h:panelGroup layout="block" id="smallBox" class="inner ">
+                    <h:form>
+                        <h:panelGrid styleClass="middleOfScreen" columns = "2">
+                            <h:outputText value="Pick Template:"/>
+                            <h:selectOneMenu  value="#{templateBean.templateName}">
+                                <f:selectItem itemValue ="אישור לימודים" itemLabel="אישור לימודים"/>
+                                <f:selectItem itemValue="זכאות להנחה בתחבורה ציבורית" 
+                                              itemLabel="זכאות להנחה בתחבורה ציבורית"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" styleClass="middleOfScreen">
+                            <h:selectOneRadio id="actioSelection" styleClass="middleOfScreen" 
+                                              value="#{templateBean.action}" 
+                                              validator ="#{myValidator.validateEmailInputIfEmailSelected}" >
+                                <f:selectItem itemValue ="save" itemLabel="Save"/>
+                                <f:selectItem itemValue="email" itemLabel="Email"/>
+                                <f:attribute name="emailInputText" value="#{emailInputText}" />
+                            </h:selectOneRadio>
+                            <h:message for="actioSelection" styleClass="error"/>
+                        </h:panelGrid>
+                        <h:panelGrid styleClass="middleOfScreen" columns = "3">
+                            <h:outputText value="If selected Email, enter Email address:"/>
+                            <h:inputText id="emailInput" value="#{templateBean.email}" 
+                                         binding="#{emailInputText}" />
+                        </h:panelGrid>
+                        <h:panelGrid styleClass="middleOfScreen" columns = "3">
+                            <h:outputText value="Enter Student Id"/>
+                            <h:inputText id="IdInput" required="true" requiredMessage="Input Id Number"
+                                         value="#{templateBean.id}" 
+                                         validator ="#{myValidator.validateIdInDatabase}"/> 
+                            <h:message for="IdInput" styleClass="error"/>
+                        </h:panelGrid>
+                        <h:commandButton    value="Submit" 
+                                          action="#{templateBean.result}"/>
+                        <h:messages globalOnly="true" style="color: red" />
+                    </h:form> 
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:body>
+</html>

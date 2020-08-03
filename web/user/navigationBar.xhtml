@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+        <ui:composition>
+            <h:outputStylesheet library="css" name="navBar.css"  />
+            <h:form>
+                <h:panelGroup layout="block" class="nav">
+                    <h:commandLink class="homePage"  value="Home Page" 
+                                   action="/user/homePage?faces-redirect=true"/>
+                    <h:commandLink value="Add Student" 
+                                   action="/user/addStudent?faces-redirect=true"/>
+                    <h:commandLink value="Edit Student" 
+                                   action="/user/editStudent?faces-redirect=true"/>
+                    <h:commandLink value="Delete Student" 
+                                   action="/user/deleteStudent?faces-redirect=true"/>
+                    <h:commandLink value="Show Data"
+                                   action="/user/dataToShow?faces-redirect=true"/>
+                    <h:commandLink value="Change Template" 
+                                   action="/user/template?faces-redirect=true"/>
+                    <h:commandLink value="Manage Users Access" rendered='#{userBean.admin}'
+                                   action="/user/admin/mainAdmin?faces-redirect=true"/>
+                    <h:commandLink value="Log Out" action="#{userBean.logOut}"/>
+                </h:panelGroup>
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>
+

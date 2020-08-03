@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Delete Student</title>
+        <h:outputStylesheet library="css" name="main.css"  />
+    </h:head>
+    <h:body>
+        <ui:include src="navigationBar.xhtml"/>
+        <h:outputText value="&lt;br/&gt;" escape="false" />
+        <h:outputText value="&lt;br/&gt;" escape="false" />
+        <h:outputText value="Delete Student from database" id="header"/>
+        <h:panelGroup layout="block" class="outer">
+            <h:panelGroup layout="block" class="middle ">
+                <h:panelGroup layout="block" id="smallBox" class="inner ">
+                    <h:form>
+                        <h:panelGrid styleClass="middleOfScreen" columns="3">
+                            <h:outputText value="Students Id:"/>
+                            <h:inputText id="idInput" label="Students Id" required="true" 
+                                         requiredMessage="Enter Students Id"
+                                         validator="#{myValidator.validateIdInDatabase}"
+                                         value="#{studentBean.student.id}" maxlength="9"/>
+                            <h:message for="idInput" styleClass="error" />
+                        </h:panelGrid>
+                        <h:panelGrid styleClass="middleOfScreen" columns = "2" >
+                            <h:outputText value="Delete also Parents information?"/>
+                            <h:selectOneRadio label="delete Parents" 
+                                              value="#{studentBean.deleteParents}">
+                                <f:selectItem itemValue ="true" itemLabel="yes"/>
+                                <f:selectItem itemValue="false" itemLabel="no"/>
+                            </h:selectOneRadio>
+                        </h:panelGrid>  
+                        <h:panelGrid styleClass="middleOfScreen" columns="1">
+                            <h:commandButton value="Delete:" action="#{studentBean.deleteStudent()}"/>
+                        <h:messages globalOnly="true" style="color: blue" />
+                        </h:panelGrid>  
+                    </h:form>
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:panelGroup>
+    </h:body>
+</html>
+
